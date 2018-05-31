@@ -1,0 +1,11 @@
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\bin\Debug\netcoreapp2.0\DemoStoreProcedure.deps.json
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\bin\Debug\netcoreapp2.0\DemoStoreProcedure.runtimeconfig.json
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\bin\Debug\netcoreapp2.0\DemoStoreProcedure.runtimeconfig.dev.json
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\bin\Debug\netcoreapp2.0\DemoStoreProcedure.dll
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\obj\Debug\netcoreapp2.0\DemoStoreProcedure.csprojResolveAssemblyReference.cache
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\obj\Debug\netcoreapp2.0\DemoStoreProcedure.csproj.CoreCompileInputs.cache
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\obj\Debug\netcoreapp2.0\DemoStoreProcedure.AssemblyInfoInputs.cache
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\obj\Debug\netcoreapp2.0\DemoStoreProcedure.AssemblyInfo.cs
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\bin\Debug\netcoreapp2.0\DemoStoreProcedure.pdb
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\obj\Debug\netcoreapp2.0\DemoStoreProcedure.dll
+c:\users\partha\source\repos\DemoStoreProcedure\DemoStoreProcedure\obj\Debug\netcoreapp2.0\DemoStoreProcedure.pdb
