@@ -1,6 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System;
+
 using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DemoStoreProcedure
 {
@@ -10,7 +12,7 @@ namespace DemoStoreProcedure
         {
             try
             {
-            const string connectionString = "Your Mysql Connection String";
+                const string connectionString = "Your Mysql Connection String";
 
                 var mySqlConnection = new MySqlConnection(connectionString);
 
@@ -18,7 +20,7 @@ namespace DemoStoreProcedure
 
                 const string sqlQueryCreateSchema = "Create schema test;";
 
-                var mysqlCreateSchemaCommand = new MySqlCommand(sqlQueryCreateSchema,mySqlConnection);
+                var mysqlCreateSchemaCommand = new MySqlCommand(sqlQueryCreateSchema, mySqlConnection);
 
                 mySqlConnection.Open();
 
@@ -26,8 +28,8 @@ namespace DemoStoreProcedure
                 readerCreateSchema.Close();
 
                 const string sqlQueryUseDb = "use  test;";
-                
-                var mySqlCommandUseDb = new MySqlCommand(sqlQueryUseDb,mySqlConnection);
+
+                var mySqlCommandUseDb = new MySqlCommand(sqlQueryUseDb, mySqlConnection);
 
                 var readerForUseDb = mySqlCommandUseDb.ExecuteReader();
                 readerForUseDb.Close();
@@ -58,27 +60,54 @@ namespace DemoStoreProcedure
                 #endregion
 
                 #region Stored Procedure Method Create
-
+                // first create the store proc 
                 const string sqlQuery = "DROP PROCEDURE IF EXISTS DemoCreateProcedure;" +
-                                        "DELIMITER $$" +
-                                        "CREATE DEFINER =`root`@`%` PROCEDURE" +
-                                        "`DemoCreateProcedure`(IN _endDate datetime)" +
+
+                                        "CREATE  PROCEDURE" +
+                                        "DemoCreateProcedure(IN _endDate _datetime)" +
                                         "BEGIN" +
-                                        "Select* From tutorials_tbl Where submission_date <= submissionEnd_Date order by" +
-                                        "tutorial_author asc;" +
-                                        "END$$" +
-                                        "DELIMITER;";
+                                        "Select * From tutorials_tbl Where submission_date <= _endDate order by" +
+                                        "tutorial_author;" +
+                                        "END";
 
                 MySqlCommand mySqlCommand = new MySqlCommand(sqlQuery, mySqlConnection);
 
                 mySqlConnection.Open();
-                var reader = mySqlCommand.ExecuteReader();
-                while (reader.Read())
-                {
-                    //do something
-                }
-                reader.Close();
+                // Please see ExecuteNonQuery
+                mySqlCommand.ExecuteNonQuery();
+
                 mySqlConnection.Close();
+
+
+                //Now call the proc
+
+                /* change Below to Date time needed*/
+                DateTime Date = DateTime.Now;
+                using (SqlConnection conn = new SqlConnection("Your Mysql Connection String"))
+                {
+                    conn.Open();
+
+                    // 1.  create a command object identifying the stored procedure
+                    SqlCommand cmd = new SqlCommand("DemoCreateProcedure", conn);
+
+                    // 2. set the command object so it knows to execute a stored procedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // 3. add parameter to command, which will be passed to the stored procedure
+                    cmd.Parameters.Add(new SqlParameter("@_endDate", Date));
+
+                    // execute the command
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        // iterate through results, printing each to console
+                        while (rdr.Read())
+                        {
+
+                            //do something
+                            Console.WriteLine(rdr[1].ToString());
+                        }
+                    }
+                }
 
                 #endregion
 
